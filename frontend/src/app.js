@@ -9,12 +9,12 @@ async function loadOpportunities() {
     opportunities.forEach(opp => {
         const li = document.createElement('li');
         li.innerHTML = `
-            <h3>${opp.title}</h3>
-            <p>OID: ${opp.oid}</p>
+            <h3><i class="fas fa-lightbulb"></i> ${opp.title}</h3>
+            <p><strong>OID:</strong> ${opp.oid}</p>
             <p>${opp.description}</p>
             <div class="opportunity-actions">
-                <button onclick="editOpportunity('${opp.oid}')">Edit</button>
-                <button onclick="deleteOpportunity('${opp.oid}')">Delete</button>
+                <button onclick="editOpportunity('${opp.oid}')"><i class="fas fa-edit"></i> Edit</button>
+                <button onclick="deleteOpportunity('${opp.oid}')"><i class="fas fa-trash-alt"></i> Delete</button>
             </div>
         `;
         list.appendChild(li);

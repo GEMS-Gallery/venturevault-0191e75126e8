@@ -5,22 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VC Investment Opportunities CRM</title>
     <link rel="stylesheet" href="src/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app">
-        <h1>VC Investment Opportunities CRM</h1>
-        <h2 class="sub-strap">by David Fisher</h2>
-        <div id="opportunityForm">
-            <h2>Add/Edit Opportunity</h2>
-            <input type="text" id="oidInput" placeholder="OID">
-            <input type="text" id="titleInput" placeholder="Title">
-            <textarea id="descriptionInput" placeholder="Description"></textarea>
-            <button id="saveButton">Save Opportunity</button>
-        </div>
-        <div id="opportunitiesList">
-            <h2>Opportunities</h2>
-            <ul id="opportunitiesListItems"></ul>
-        </div>
+        <header>
+            <h1><i class="fas fa-chart-line"></i> VC Investment Opportunities CRM</h1>
+            <h2 class="sub-strap">by David Fisher</h2>
+        </header>
+        <main>
+            <section id="opportunityForm" class="card">
+                <h2><i class="fas fa-plus-circle"></i> Add/Edit Opportunity</h2>
+                <input type="text" id="oidInput" placeholder="OID">
+                <input type="text" id="titleInput" placeholder="Title">
+                <textarea id="descriptionInput" placeholder="Description"></textarea>
+                <button id="saveButton"><i class="fas fa-save"></i> Save Opportunity</button>
+            </section>
+            <section id="opportunitiesList" class="card">
+                <h2><i class="fas fa-list"></i> Opportunities</h2>
+                <ul id="opportunitiesListItems"></ul>
+            </section>
+        </main>
     </div>
     <script type="module" src="src/app.js"></script>
 </body>
