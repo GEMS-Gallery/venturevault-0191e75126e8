@@ -74,6 +74,11 @@ actor {
     }
   };
 
+  // Function to search for an opportunity by OID
+  public query func searchOpportunityByOID(oid: Text) : async ?Opportunity {
+    opportunities.get(oid)
+  };
+
   // Pre-upgrade hook to store opportunities in stable storage
   system func preupgrade() {
     opportunitiesEntries := Iter.toArray(opportunities.entries());

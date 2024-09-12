@@ -17,6 +17,7 @@ export interface _SERVICE {
   'deleteOpportunity' : ActorMethod<[string], boolean>,
   'getOpportunity' : ActorMethod<[string], [] | [Opportunity]>,
   'listOpportunities' : ActorMethod<[], Array<Opportunity>>,
+  'searchOpportunityByOID' : ActorMethod<[string], [] | [Opportunity]>,
   'updateOpportunity' : ActorMethod<
     [string, string, string, [] | [string], [] | [string]],
     boolean

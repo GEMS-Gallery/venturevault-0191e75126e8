@@ -53,9 +53,8 @@ function clearForm() {
 async function editOpportunity(oid) {
     try {
         const opportunityOpt = await backend.getOpportunity(oid);
-        console.log('Received opportunity:', opportunityOpt); // Debug log
-        if (opportunityOpt && opportunityOpt.length > 0) {
-            const opportunity = opportunityOpt[0];
+        if (opportunityOpt) {
+            const opportunity = opportunityOpt;
             document.getElementById('oidInput').value = opportunity.oid || '';
             document.getElementById('titleInput').value = opportunity.title || '';
             document.getElementById('descriptionInput').value = opportunity.description || '';
@@ -88,7 +87,32 @@ async function deleteOpportunity(oid) {
     }
 }
 
+async function searchOpportunity() {
+    const searchTerm = document.getElementById('searchInput').value;
+    const resultDiv = document.getElementById('searchResult');
+    resultDiv.innerHTML = '';
+
+    try {
+        const opportunity = await backend.searchOpportunityByOID(searchTerm);
+        if (opportunity) {
+            resultDiv.innerHTML = `
+                <h3>${opportunity.title}</h3>
+                <p><strong>OID:</strong> ${opportunity.oid}</p>
+                <p>${opportunity.description}</p>
+                ${opportunity.source ? `<p><strong>Source:</strong> ${opportunity.source}</p>` : ''}
+                ${opportunity.partner ? `<p><strong>Partner:</strong> ${opportunity.partner}</p>` : ''}
+            `;
+        } else {
+            resultDiv.innerHTML = '<p>No opportunity found with the given OID.</p>';
+        }
+    } catch (error) {
+        console.error('Error searching for opportunity:', error);
+        resultDiv.innerHTML = '<p>Error searching for opportunity. Please try again.</p>';
+    }
+}
+
 document.getElementById('saveButton').addEventListener('click', saveOpportunity);
+document.getElementById('searchButton').addEventListener('click', searchOpportunity);
 
 window.editOpportunity = editOpportunity;
 window.deleteOpportunity = deleteOpportunity;

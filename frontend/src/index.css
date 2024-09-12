@@ -35,6 +35,7 @@ h1 {
 
 main {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -44,6 +45,7 @@ main {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
     flex: 1;
+    min-width: 300px;
 }
 
 h2 {
@@ -107,4 +109,21 @@ li:hover {
 
 .fas {
     margin-right: 5px;
+}
+
+#searchSection {
+    display: flex;
+    flex-direction: column;
+}
+
+#searchInput {
+    margin-right: 10px;
+}
+
+#searchButton {
+    align-self: flex-start;
+}
+
+#searchResult {
+    margin-top: 20px;
 }

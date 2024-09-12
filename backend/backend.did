@@ -11,5 +11,6 @@ service : {
   deleteOpportunity: (text) -> (bool);
   getOpportunity: (text) -> (opt Opportunity) query;
   listOpportunities: () -> (vec Opportunity) query;
+  searchOpportunityByOID: (text) -> (opt Opportunity) query;
   updateOpportunity: (text, text, text, opt text, opt text) -> (bool);
 }
