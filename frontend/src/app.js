@@ -45,13 +45,16 @@ function clearForm() {
 }
 
 async function editOpportunity(oid) {
-    const opportunity = await backend.getOpportunity(oid);
-    if (opportunity) {
+    const opportunityOpt = await backend.getOpportunity(oid);
+    if (opportunityOpt && 'Some' in opportunityOpt) {
+        const opportunity = opportunityOpt.Some;
         document.getElementById('oidInput').value = opportunity.oid;
         document.getElementById('titleInput').value = opportunity.title;
         document.getElementById('descriptionInput').value = opportunity.description;
         currentOID = oid;
         document.getElementById('oidInput').disabled = true;
+    } else {
+        alert('Opportunity not found');
     }
 }
 
