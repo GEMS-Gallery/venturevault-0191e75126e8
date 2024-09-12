@@ -93,12 +93,13 @@ async function searchOpportunity() {
     resultDiv.innerHTML = '';
 
     try {
-        const opportunity = await backend.searchOpportunityByOID(searchTerm);
-        if (opportunity) {
+        const opportunityOpt = await backend.searchOpportunityByOID(searchTerm);
+        if (opportunityOpt) {
+            const opportunity = opportunityOpt;
             resultDiv.innerHTML = `
-                <h3>${opportunity.title}</h3>
-                <p><strong>OID:</strong> ${opportunity.oid}</p>
-                <p>${opportunity.description}</p>
+                <h3>${opportunity.title || 'N/A'}</h3>
+                <p><strong>OID:</strong> ${opportunity.oid || 'N/A'}</p>
+                <p>${opportunity.description || 'N/A'}</p>
                 ${opportunity.source ? `<p><strong>Source:</strong> ${opportunity.source}</p>` : ''}
                 ${opportunity.partner ? `<p><strong>Partner:</strong> ${opportunity.partner}</p>` : ''}
             `;
