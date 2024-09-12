@@ -9,6 +9,13 @@ h1, h2 {
     color: #333;
 }
 
+.sub-strap {
+    font-size: 1.2em;
+    color: #666;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
 input, textarea {
     display: block;
     width: 100%;

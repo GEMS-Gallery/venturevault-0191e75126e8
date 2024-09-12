@@ -45,23 +45,37 @@ function clearForm() {
 }
 
 async function editOpportunity(oid) {
-    const opportunityOpt = await backend.getOpportunity(oid);
-    if (opportunityOpt && 'Some' in opportunityOpt) {
-        const opportunity = opportunityOpt.Some;
-        document.getElementById('oidInput').value = opportunity.oid;
-        document.getElementById('titleInput').value = opportunity.title;
-        document.getElementById('descriptionInput').value = opportunity.description;
-        currentOID = oid;
-        document.getElementById('oidInput').disabled = true;
-    } else {
-        alert('Opportunity not found');
+    try {
+        const opportunityOpt = await backend.getOpportunity(oid);
+        if (opportunityOpt && 'Some' in opportunityOpt) {
+            const opportunity = opportunityOpt.Some;
+            document.getElementById('oidInput').value = opportunity.oid;
+            document.getElementById('titleInput').value = opportunity.title;
+            document.getElementById('descriptionInput').value = opportunity.description;
+            currentOID = oid;
+            document.getElementById('oidInput').disabled = true;
+        } else {
+            throw new Error('Opportunity not found');
+        }
+    } catch (error) {
+        console.error('Error editing opportunity:', error);
+        alert('Error editing opportunity: ' + error.message);
     }
 }
 
 async function deleteOpportunity(oid) {
     if (confirm('Are you sure you want to delete this opportunity?')) {
-        await backend.deleteOpportunity(oid);
-        await loadOpportunities();
+        try {
+            const result = await backend.deleteOpportunity(oid);
+            if (result) {
+                await loadOpportunities();
+            } else {
+                throw new Error('Failed to delete opportunity');
+            }
+        } catch (error) {
+            console.error('Error deleting opportunity:', error);
+            alert('Error deleting opportunity: ' + error.message);
+        }
     }
 }
 
