@@ -1,0 +1,13 @@
+type Opportunity = 
+ record {
+   description: text;
+   oid: text;
+   title: text;
+ };
+service : {
+  addOpportunity: (text, text, text) -> ();
+  deleteOpportunity: (text) -> (bool);
+  getOpportunity: (text) -> (opt Opportunity) query;
+  listOpportunities: () -> (vec Opportunity) query;
+  updateOpportunity: (text, text, text) -> (bool);
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VC Investment Opportunities CRM</title>
+    <link rel="stylesheet" href="src/index.css">
+</head>
+<body>
+    <div id="app">
+        <h1>VC Investment Opportunities CRM</h1>
+        <div id="opportunityForm">
+            <h2>Add/Edit Opportunity</h2>
+            <input type="text" id="oidInput" placeholder="OID">
+            <input type="text" id="titleInput" placeholder="Title">
+            <textarea id="descriptionInput" placeholder="Description"></textarea>
+            <button id="saveButton">Save Opportunity</button>
+        </div>
+        <div id="opportunitiesList">
+            <h2>Opportunities</h2>
+            <ul id="opportunitiesListItems"></ul>
+        </div>
+    </div>
+    <script type="module" src="src/app.js"></script>
+</body>
+</html>
