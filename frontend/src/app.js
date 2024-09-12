@@ -55,15 +55,15 @@ async function editOpportunity(oid) {
         const opportunityOpt = await backend.getOpportunity(oid);
         if (opportunityOpt) {
             const opportunity = opportunityOpt;
-            document.getElementById('oidInput').value = opportunity.oid || '';
-            document.getElementById('titleInput').value = opportunity.title || '';
-            document.getElementById('descriptionInput').value = opportunity.description || '';
+            document.getElementById('oidInput').value = opportunity.oid;
+            document.getElementById('titleInput').value = opportunity.title;
+            document.getElementById('descriptionInput').value = opportunity.description;
             document.getElementById('sourceInput').value = opportunity.source || '';
             document.getElementById('partnerInput').value = opportunity.partner || '';
             currentOID = oid;
             document.getElementById('oidInput').disabled = true;
         } else {
-            throw new Error('Opportunity not found or invalid data structure');
+            throw new Error('Opportunity not found');
         }
     } catch (error) {
         console.error('Error editing opportunity:', error);
@@ -97,9 +97,9 @@ async function searchOpportunity() {
         if (opportunityOpt) {
             const opportunity = opportunityOpt;
             resultDiv.innerHTML = `
-                <h3>${opportunity.title || 'N/A'}</h3>
-                <p><strong>OID:</strong> ${opportunity.oid || 'N/A'}</p>
-                <p>${opportunity.description || 'N/A'}</p>
+                <h3>${opportunity.title}</h3>
+                <p><strong>OID:</strong> ${opportunity.oid}</p>
+                <p>${opportunity.description}</p>
                 ${opportunity.source ? `<p><strong>Source:</strong> ${opportunity.source}</p>` : ''}
                 ${opportunity.partner ? `<p><strong>Partner:</strong> ${opportunity.partner}</p>` : ''}
             `;
