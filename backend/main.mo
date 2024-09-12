@@ -15,6 +15,8 @@ actor {
     oid: Text;
     title: Text;
     description: Text;
+    source: ?Text;
+    partner: ?Text;
   };
 
   // Create a stable variable to store opportunities
@@ -25,11 +27,13 @@ actor {
   opportunities := HashMap.fromIter<Text, Opportunity>(opportunitiesEntries.vals(), 1, Text.equal, Text.hash);
 
   // Function to add a new opportunity
-  public func addOpportunity(oid: Text, title: Text, description: Text) : async () {
+  public func addOpportunity(oid: Text, title: Text, description: Text, source: ?Text, partner: ?Text) : async () {
     let opportunity : Opportunity = {
       oid = oid;
       title = title;
       description = description;
+      source = source;
+      partner = partner;
     };
     opportunities.put(oid, opportunity);
   };
@@ -45,7 +49,7 @@ actor {
   };
 
   // Function to update an opportunity
-  public func updateOpportunity(oid: Text, title: Text, description: Text) : async Bool {
+  public func updateOpportunity(oid: Text, title: Text, description: Text, source: ?Text, partner: ?Text) : async Bool {
     switch (opportunities.get(oid)) {
       case (null) { false };
       case (?existingOpportunity) {
@@ -53,6 +57,8 @@ actor {
           oid = oid;
           title = title;
           description = description;
+          source = source;
+          partner = partner;
         };
         opportunities.put(oid, updatedOpportunity);
         true

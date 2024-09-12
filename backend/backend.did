@@ -2,12 +2,14 @@ type Opportunity =
  record {
    description: text;
    oid: text;
+   partner: opt text;
+   source: opt text;
    title: text;
  };
 service : {
-  addOpportunity: (text, text, text) -> ();
+  addOpportunity: (text, text, text, opt text, opt text) -> ();
   deleteOpportunity: (text) -> (bool);
   getOpportunity: (text) -> (opt Opportunity) query;
   listOpportunities: () -> (vec Opportunity) query;
-  updateOpportunity: (text, text, text) -> (bool);
+  updateOpportunity: (text, text, text, opt text, opt text) -> (bool);
 }
