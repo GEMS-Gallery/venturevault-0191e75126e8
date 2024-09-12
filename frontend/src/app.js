@@ -47,15 +47,16 @@ function clearForm() {
 async function editOpportunity(oid) {
     try {
         const opportunityOpt = await backend.getOpportunity(oid);
-        if (opportunityOpt) {
-            const opportunity = opportunityOpt;
-            document.getElementById('oidInput').value = opportunity.oid;
-            document.getElementById('titleInput').value = opportunity.title;
-            document.getElementById('descriptionInput').value = opportunity.description;
+        console.log('Received opportunity:', opportunityOpt); // Debug log
+        if (opportunityOpt && opportunityOpt.length > 0) {
+            const opportunity = opportunityOpt[0];
+            document.getElementById('oidInput').value = opportunity.oid || '';
+            document.getElementById('titleInput').value = opportunity.title || '';
+            document.getElementById('descriptionInput').value = opportunity.description || '';
             currentOID = oid;
             document.getElementById('oidInput').disabled = true;
         } else {
-            throw new Error('Opportunity not found');
+            throw new Error('Opportunity not found or invalid data structure');
         }
     } catch (error) {
         console.error('Error editing opportunity:', error);
